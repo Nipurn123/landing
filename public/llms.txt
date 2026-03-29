@@ -1,0 +1,92 @@
+# 100XPrompt
+
+> India's full-stack sovereign AI platform. Self-hosted LLMs, private GPU infrastructure, and agentic CLI.
+
+## What is 100XPrompt?
+
+100XPrompt is an enterprise AI platform built for organizations that need complete data sovereignty. We provide three integrated layers:
+
+1. **100X Code** - An agentic CLI that operates directly in your terminal, giving you an AI developer that works across your entire stack with full context awareness.
+
+2. **The Brain (LLM Layer)** - Self-hosted large language models fine-tuned on your proprietary data. Your models, your weights, your infrastructure. No data leaves your perimeter.
+
+3. **The Servers (Infrastructure)** - Private GPU deployment tailored for enterprise scale. We set up end-to-end compute orchestration on your infrastructure or ours.
+
+## Products
+
+### Flash - Speed-first inference
+- Sub-100ms responses for real-time applications
+- Optimized for low latency workloads
+- High throughput API access
+- Production-ready infrastructure
+- 99.5% uptime SLA
+- Starting from custom pricing
+
+### Pro - Enterprise intelligence
+- Deep reasoning capabilities for complex tasks
+- Extended context windows
+- Fine-tuning on your proprietary data
+- Ideal for legal, financial, and medical workloads
+- Priority support
+- 99.9% uptime SLA
+- DPDP compliance toolkit
+
+### Enterprise - Sovereign infrastructure
+- Air-gapped deployment options
+- Complete data sovereignty - your datacenter, your rules
+- Custom model training
+- Dedicated infrastructure
+- 24/7 dedicated support
+- Custom SLA
+- Security audit support
+- On-site training
+
+## Key Features
+
+- **Sovereign AI**: Your data never leaves your infrastructure. Complete control over model weights and training data.
+- **DPDP Compliant**: Built for India's Digital Personal Data Protection Act requirements.
+- **Self-Hosted LLMs**: Deploy and fine-tune models on your own infrastructure.
+- **Agentic CLI**: Terminal-native AI developer that understands your codebase.
+- **Private GPU Infrastructure**: Enterprise-grade compute without sharing resources.
+- **Air-Gapped Deployment**: For highest security requirements, deploy completely offline.
+
+## Use Cases
+
+- **Financial Services**: Regulatory-compliant AI for fraud detection, risk analysis, and customer service
+- **Healthcare**: HIPAA-compliant diagnostic assistance and patient data analysis
+- **Legal**: Contract analysis, legal research, and document review with attorney-client privilege protection
+- **Government**: Sovereign AI for national security and citizen services
+- **Enterprise**: Internal knowledge management, code generation, and process automation
+
+## Technology Stack
+
+- Large Language Models (LLMs) optimized for enterprise workloads
+- Private GPU clusters with custom orchestration
+- Secure API gateways with enterprise authentication
+- Fine-tuning pipelines for domain adaptation
+- Air-gapped deployment capabilities
+
+## Company
+
+- **Founded**: 2024
+- **Location**: India
+- **Focus**: Sovereign AI for Indian enterprises
+- **Website**: https://100xprompt.com
+
+## Contact
+
+- **Sales**: https://100xprompt.com/contact
+- **Email**: hello@100xprompt.com
+- **Twitter**: https://x.com/100XPrompt
+- **LinkedIn**: https://www.linkedin.com/company/100xprompt
+- **Instagram**: https://www.instagram.com/100xprompt/
+
+## Important Pages
+
+- Pricing: https://100xprompt.com/pricing
+- Documentation: https://100xprompt.com/docs
+- Blog: https://100xprompt.com/blog
+- Privacy Policy: https://100xprompt.com/privacy
+- Terms of Use: https://100xprompt.com/terms
+
+## crawl-delay: 1

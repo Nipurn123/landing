@@ -1,0 +1,56 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: 100xprompt-ingress
+  namespace: hundredxprompt
+  annotations:
+    kubernetes.io/ingress.class: "gce"
+    kubernetes.io/ingress.global-static-ip-name: "100xprompt-ip"
+    networking.gke.io/managed-certificates: "100xprompt-cert"
+    kubernetes.io/ingress.allow-http: "false"
+spec:
+  rules:
+    - host: 100xprompt.com
+      http:
+        paths:
+          - path: /api/*
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: backend
+                port:
+                  number: 3001
+          - path: /*
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: frontend
+                port:
+                  number: 80
+    - host: www.100xprompt.com
+      http:
+        paths:
+          - path: /api/*
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: backend
+                port:
+                  number: 3001
+          - path: /*
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: frontend
+                port:
+                  number: 80
+    - host: api.100xprompt.com
+      http:
+        paths:
+          - path: /*
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: backend
+                port:
+                  number: 3001

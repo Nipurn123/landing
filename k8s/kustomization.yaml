@@ -1,0 +1,19 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: hundredxprompt
+
+resources:
+  - namespace.yaml
+  - configmap.yaml
+  - secrets.yaml
+  - frontend-deployment.yaml
+  - backend-deployment.yaml
+  - managed-certificate.yaml
+  - ingress.yaml
+  - hpa.yaml
+  - pdb.yaml
+
+commonLabels:
+  app: hundredxprompt
+  environment: production

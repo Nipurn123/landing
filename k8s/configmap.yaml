@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+  namespace: hundredxprompt
+data:
+  VITE_API_URL: "https://api.100xprompt.com"
+  VITE_SUPABASE_URL: "https://lcztfynodhlmghcpfchw.supabase.co"

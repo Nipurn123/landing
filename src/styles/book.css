@@ -1,0 +1,124 @@
+.book-container {
+  perspective: 2500px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-style: preserve-3d;
+}
+
+.book {
+  position: relative;
+  display: flex;
+  transform-style: preserve-3d;
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
+  background-color: var(--color-page);
+  border-radius: 4px;
+}
+
+.book-spine {
+  position: absolute;
+  top: -2px;
+  bottom: -2px;
+  left: calc(50% - 12px);
+  width: 24px;
+  background-color: var(--color-spine);
+  z-index: 0;
+  border-radius: 4px;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8);
+}
+
+.spine-glow {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(50% - 2px);
+  width: 4px;
+  background-color: var(--color-green-light);
+  filter: blur(8px);
+  opacity: 0.8;
+  z-index: 1;
+}
+
+@keyframes pulseGlow {
+  0% { opacity: 0; }
+  50% { opacity: 0.8; }
+  100% { opacity: 0; }
+}
+
+.spine-glow.breathing {
+  animation: pulseGlow 3s infinite;
+}
+
+.page {
+  position: absolute;
+  top: 0;
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  background-color: transparent;
+}
+
+.page-front,
+.page-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  overflow: hidden;
+  border-radius: 0 4px 4px 0;
+}
+
+.page-front {
+  background-color: var(--color-page);
+  box-shadow: inset 20px 0 40px rgba(0, 0, 0, 0.05);
+}
+
+.page-back {
+  background-color: var(--color-page-back);
+  transform: rotateY(180deg);
+  box-shadow: inset -20px 0 40px rgba(0, 0, 0, 0.05);
+  border-radius: 4px 0 0 4px;
+}
+
+/* Base pages to keep background behind flips */
+.base-page-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-page-back);
+  border-radius: 4px 0 0 4px;
+  transform-origin: right center;
+  transform: rotateY(180deg);
+  box-shadow: inset -20px 0 40px rgba(0, 0, 0, 0.05);
+}
+
+.base-page-right {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-page);
+  border-radius: 0 4px 4px 0;
+  box-shadow: inset 20px 0 40px rgba(0, 0, 0, 0.05);
+}
+
+.page-stack {
+  position: absolute;
+  top: 1px;
+  right: -2px;
+  bottom: 1px;
+  width: 4px;
+  background: #e0e0e0;
+  border-radius: 0 4px 4px 0;
+  z-index: 0;
+  border-right: 1px solid #ccc;
+}
+.stack-1 { transform: translateX(2px); z-index: 1; }
+.stack-2 { transform: translateX(4px); z-index: 0; }
+.stack-3 { transform: translateX(6px); z-index: -1; }
+.stack-4 { transform: translateX(8px); z-index: -2; }

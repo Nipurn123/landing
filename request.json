@@ -1,0 +1,7 @@
+{
+  "text": "Hello, how are you today?",
+  "sampling_params": {
+    "max_new_tokens": 50,
+    "temperature": 0.0
+  }
+}

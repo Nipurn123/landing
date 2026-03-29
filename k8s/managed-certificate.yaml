@@ -1,0 +1,10 @@
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: 100xprompt-cert
+  namespace: hundredxprompt
+spec:
+  domains:
+    - 100xprompt.com
+    - www.100xprompt.com
+    - api.100xprompt.com
