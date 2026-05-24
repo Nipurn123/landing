@@ -7,14 +7,14 @@ export default function CTASection() {
   const { goToContact } = useNavigation();
 
   return (
-    <section className="px-6 py-20 pb-32">
+    <section className="px-4 sm:px-6 py-12 sm:py-16 md:py-20 pb-20 sm:pb-24 md:pb-32">
       <div className="max-w-5xl mx-auto">
         <m.div
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1.2, ease: [0.25, 1, 0.5, 1] }}
-          className="relative overflow-hidden rounded-[32px] p-16 md:p-24 text-center"
+          className="relative overflow-hidden rounded-2xl sm:rounded-3xl p-8 sm:p-12 md:p-16 lg:p-24 text-center"
           style={{
             background: 'linear-gradient(180deg, #fafbfc 0%, #f0f2f4 100%)',
           }}
@@ -45,7 +45,7 @@ export default function CTASection() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.1 }}
-              className="w-12 h-12 rounded-2xl flex items-center justify-center"
+              className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl flex items-center justify-center"
               style={{ 
                 background: `linear-gradient(135deg, ${GREEN} 0%, #3d9a5c 100%)`,
                 boxShadow: `0 8px 32px -8px ${GREEN}66`
@@ -69,7 +69,7 @@ export default function CTASection() {
                 className="text-base md:text-lg text-gray-500 font-body max-w-md leading-relaxed"
                 style={{ fontFamily: "'DM Sans', sans-serif" }}
               >
-                Sovereign, secure, and scaled for India.
+                Sovereign, secure, and built for the world.
               </p>
             </div>
 
@@ -77,7 +77,7 @@ export default function CTASection() {
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.98 }}
               onClick={goToContact}
-              className="px-8 py-4 rounded-full text-sm font-semibold transition-all duration-300"
+              className="px-6 sm:px-8 py-3 sm:py-4 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300"
               style={{
                 background: '#111827',
                 color: '#fff',

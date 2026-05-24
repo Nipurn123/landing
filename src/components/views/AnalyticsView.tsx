@@ -387,7 +387,7 @@ export default function AnalyticsView() {
                             </span>
                           </td>
                           <td className="py-3 text-white/80 max-w-md truncate">
-                            {click.element_text || '—'}
+                            {click.element_text || '-'}
                           </td>
                           <td className="py-3 text-right">
                             <span className="text-white font-semibold">{click.click_count}</span>

@@ -15,7 +15,7 @@ export default function Stats() {
           <div className="font-display text-5xl md:text-6xl text-[hsl(var(--color-text-primary))] mb-4 font-semibold tracking-tight group-hover:-translate-y-1 transition-transform duration-300">1B+</div>
           <div className="font-body text-[12px] font-bold text-[hsl(var(--color-text-secondary))] uppercase tracking-[0.2em] mb-4">Daily Transactions</div>
           <p className="font-body text-[hsl(var(--color-text-muted))] leading-relaxed text-[15px]">
-            Running flawlessly in production for India's NPCI backbone, validating extreme scale.
+            Running flawlessly in production for enterprise payment systems, validating extreme scale.
           </p>
         </m.div>
 

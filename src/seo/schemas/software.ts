@@ -33,7 +33,7 @@ export const codeAppSchema: SoftwareApplicationSchema = {
   offers: {
     '@type': 'Offer',
     price: '0',
-    priceCurrency: 'INR',
+    priceCurrency: 'USD',
   },
   description: 'Terminal-native AI assistant for sovereign development. Autonomous coding, multi-session orchestration, and MCP tool integration.',
   url: `${SITE_CONFIG.url}/code`,
@@ -52,7 +52,7 @@ export const proModelSchema: SoftwareApplicationSchema = {
   offers: {
     '@type': 'Offer',
     price: 'CUSTOM',
-    priceCurrency: 'INR',
+    priceCurrency: 'USD',
   },
   description: 'Flagship sovereign LLM for deep reasoning. 128K context, MoE architecture, on-premise deployment.',
   url: `${SITE_CONFIG.url}/pro`,
@@ -71,7 +71,7 @@ export const flashModelSchema: SoftwareApplicationSchema = {
   offers: {
     '@type': 'Offer',
     price: 'CUSTOM',
-    priceCurrency: 'INR',
+    priceCurrency: 'USD',
   },
   description: 'Lightweight sovereign LLM optimized for speed. Sub-500ms latency, 128K context, production-ready.',
   url: `${SITE_CONFIG.url}/flash`,

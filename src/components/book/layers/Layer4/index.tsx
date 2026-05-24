@@ -76,7 +76,7 @@ export function Layer4Left() {
             <div className="w-3 h-3 rounded-full bg-red-500/60 hover:bg-red-500 transition-colors" />
             <div className="w-3 h-3 rounded-full bg-yellow-500/60 hover:bg-yellow-500 transition-colors" />
             <div className="w-3 h-3 rounded-full bg-green-500/60 hover:bg-green-500 transition-colors" />
-            <span className="ml-3 text-[10px] uppercase tracking-widest text-white/30 font-bold">100x-shell — zsh</span>
+            <span className="ml-3 text-[10px] uppercase tracking-widest text-white/30 font-bold">100x-shell - zsh</span>
           </div>
           
           <div className="p-6 font-mono text-[13px] bg-[#080808] text-[var(--color-green-light)] leading-relaxed">

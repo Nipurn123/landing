@@ -16,11 +16,13 @@ export default defineConfig({
             if (id.includes('framer-motion')) return 'vendor-motion';
             if (id.includes('lucide-react')) return 'vendor-icons';
             if (id.includes('react')) return 'vendor-react';
+            if (id.includes('clerk')) return 'vendor-clerk';
             return 'vendor';
           }
         }
       }
     },
     chunkSizeWarningLimit: 1000,
+    cssCodeSplit: true,
   }
 })

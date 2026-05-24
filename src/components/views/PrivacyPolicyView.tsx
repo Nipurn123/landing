@@ -209,7 +209,7 @@ Please note that 100xprompt may still receive data about your usage and also you
   {
     id: "disputes",
     title: "Dispute Resolution",
-    content: `In the event of any dispute, difference or claim arising out of this Privacy Policy the same shall be settled in accordance with the applicable laws in India through regular judicial process and the courts of Bengaluru, India, shall have exclusive jurisdiction.`
+    content: `In the event of any dispute, difference or claim arising out of this Privacy Policy the same shall be settled in accordance with applicable laws through the appropriate judicial process and the courts of competent jurisdiction as determined by the specific agreement between the parties.`
   }
 ];
 
@@ -303,7 +303,7 @@ export default function PrivacyPolicyView() {
             }}
           >
             <p className="text-gray-700 leading-relaxed" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-              This Privacy Policy ("Privacy Policy") applies to your use of our website <a href="https://100xprompt.com" className="underline" style={{ color: GREEN }}>https://100xprompt.com</a> ("Platform") and products offered through the Platform (hereinafter collectively referred to as "Offerings") which are owned, controlled and operated by <strong>100X Prompt Pvt. Ltd.</strong>, a company incorporated under the laws of India.
+              This Privacy Policy ("Privacy Policy") applies to your use of our website <a href="https://100xprompt.com" className="underline" style={{ color: GREEN }}>https://100xprompt.com</a> ("Platform") and products offered through the Platform (hereinafter collectively referred to as "Offerings") which are owned, controlled and operated by <strong>100X Prompt</strong>.
             </p>
             <p className="text-gray-700 leading-relaxed mt-4" style={{ fontFamily: "'DM Sans', sans-serif" }}>
               For the purposes of this Privacy Policy, "we", "our" and "us" shall mean the Company and "you" and "your", shall mean a user of the Offerings, whether registered or not ("User").
@@ -413,10 +413,10 @@ export default function PrivacyPolicyView() {
                         </div>
                         <div className="sm:col-span-2">
                           <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-                            Address
+                            Location
                           </p>
                           <p className="text-gray-900" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-                            100xprompt, Bengaluru, Karnataka, India
+                            Sovereign Cloud Infrastructure | Global Operations
                           </p>
                         </div>
                       </div>

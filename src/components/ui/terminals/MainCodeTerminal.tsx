@@ -98,7 +98,7 @@ export default function MainCodeTerminal({ onPhaseChange }: MainCodeTerminalProp
 
   return (
     <BaseTerminal 
-      title="100x-code — orchestrator"
+      title="100x-code - orchestrator"
       icon={Terminal}
       gradient="from-stone-400/10 via-transparent to-stone-300/10"
       headerColor="bg-[#0f0f0f]"
@@ -552,7 +552,7 @@ export function Footer() {
             </div>
           </div>
           <div>
-            <h4 className="text-white text-[11px] font-bold uppercase tracking-[0.2em] mb-6">Shop</h4>
+            <p className="text-white text-[11px] font-bold uppercase tracking-[0.2em] mb-6">Shop</p>
             <ul className="space-y-4 text-stone-400 text-sm">
               <li><a href="#" className="hover:text-white transition-colors">All Products</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Serums</a></li>
@@ -579,7 +579,7 @@ export function Footer() {
                 >
                   <div className="flex items-center gap-3 text-emerald-400 font-bold text-[11px] uppercase tracking-wider mb-3">
                     <CheckCircle2 className="w-4 h-4" />
-                    <span>Build Successful — Live</span>
+                    <span>Build Successful - Live</span>
                   </div>
                   <div className="flex justify-between items-center text-[10px] text-white/30">
                     <span>Generated 8 files in 18.2s</span>
@@ -769,7 +769,7 @@ function FileWriteBlock({
       <div className="flex items-center gap-3">
         <span className="text-emerald-400 font-bold text-[11px]">↳ [Write]</span>
         <span className="text-white/50 text-[11px]">{filename}</span>
-        <span className="text-white/20 text-[10px]">— {label}</span>
+        <span className="text-white/20 text-[10px]">- {label}</span>
       </div>
       <div className="ml-6 rounded-lg border border-white/5 bg-[#0a0a0a] overflow-hidden">
         <div className="px-4 py-2.5 bg-white/[0.02] border-b border-white/5 flex justify-between items-center">

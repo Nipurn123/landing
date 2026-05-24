@@ -130,9 +130,9 @@ You agree to review these Terms of Use periodically to be aware of such amendmen
   {
     id: "governing-law",
     title: "Governing Law and Jurisdiction",
-    content: `These Terms of Use shall be governed in all respects by the laws of India without giving effect to any conflicts of law principles that may require the application of the law of a different state or country.
-
-Any action arising from or relating to these Terms of Use must be brought in a competent court of law situated at Bengaluru, India.`
+    content: `These Terms of Use shall be governed in all respects by applicable laws without giving effect to any conflicts of law principles that may require the application of the law of a different state or country.
+    
+    Any action arising from or relating to these Terms of Use must be brought in a competent court of law as determined by the specific agreement between the parties.`
   },
   {
     id: "miscellaneous",
@@ -209,7 +209,7 @@ export default function TermsOfUseView() {
 
           <m.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className="mb-16 p-8 rounded-3xl" style={{ background: `linear-gradient(135deg, ${GREEN}08 0%, ${GREEN}03 100%)`, border: `1px solid ${GREEN}15` }}>
             <p className="text-gray-700 leading-relaxed" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-              This Terms of Use governs your use of our website <a href="https://100xprompt.com" className="underline" style={{ color: GREEN }}>https://100xprompt.com</a> ("Platform") and products offered through the Platform which are owned, controlled and operated by <strong>100X Prompt Pvt. Ltd.</strong>, a company incorporated under the laws of India.
+              This Terms of Use governs your use of our website <a href="https://100xprompt.com" className="underline" style={{ color: GREEN }}>https://100xprompt.com</a> ("Platform") and products offered through the Platform which are owned, controlled and operated by <strong>100X Prompt</strong>.
             </p>
             <p className="text-gray-700 leading-relaxed mt-4" style={{ fontFamily: "'DM Sans', sans-serif" }}>
               By accessing or using the Offerings, you signify that you have read, understood and agree to be bound by these Terms of Use. If you do not agree with these Terms of Use, please do not access and/or use the Offerings.

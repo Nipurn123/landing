@@ -137,7 +137,7 @@ export default function MultiSessionTerminal() {
 
   const memoryContent = [
     {
-      title: 'Session 1 — Learning Preferences',
+      title: 'Session 1 - Learning Preferences',
       input: 'Create a button component',
       action: 'User specified: "Use named exports, 2-space indent, Tailwind"',
       stored: [
@@ -148,7 +148,7 @@ export default function MultiSessionTerminal() {
       ]
     },
     {
-      title: 'Session 2 — Applying Memory',
+      title: 'Session 2 - Applying Memory',
       input: 'Create a Card component',
       action: 'Automatically applied stored preferences',
       code: `export function Card({ children }) {
@@ -161,7 +161,7 @@ export default function MultiSessionTerminal() {
       note: '← Used named export + 2-space indent (not explicitly asked)'
     },
     {
-      title: 'Session 3 — Cross-Project Memory',
+      title: 'Session 3 - Cross-Project Memory',
       input: 'Set up new project',
       action: 'Recalled preferences from previous sessions',
       applied: [
@@ -185,7 +185,7 @@ export default function MultiSessionTerminal() {
 
   return (
     <BaseTerminal
-      title="100x-code — session orchestrator"
+      title="100x-code - session orchestrator"
       icon={Cpu}
       gradient="from-stone-400/10 via-transparent to-stone-300/10"
       headerColor="bg-[#0f0f0f]"

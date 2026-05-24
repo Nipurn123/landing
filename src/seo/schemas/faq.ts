@@ -34,15 +34,15 @@ export function generateFAQSchema(items: FAQItem[]): FAQPageSchema {
 export const PLATFORM_FAQS: FAQItem[] = [
   {
     question: 'What is sovereign AI?',
-    answer: 'Sovereign AI refers to artificial intelligence systems where data, models, and infrastructure remain entirely within your control. Unlike cloud-based AI services, sovereign AI ensures your sensitive data never leaves your premises, providing complete data privacy and compliance with local regulations like India\'s DPDP Act 2023.',
+    answer: 'Sovereign AI refers to artificial intelligence systems where data, models, and infrastructure remain entirely within your control. Unlike cloud-based AI services, sovereign AI ensures your sensitive data never leaves your premises, providing complete data privacy and compliance with global data protection regulations.',
   },
   {
     question: 'How is 100xprompt different from other AI platforms?',
-    answer: '100xprompt is India\'s full-stack sovereign AI platform. We provide self-hosted LLMs, private GPU infrastructure, and an agentic CLI—all designed for enterprises and government agencies that require complete data sovereignty. Unlike OpenAI or Anthropic, your data never leaves your infrastructure.',
+    answer: '100xprompt is the leading full-stack sovereign AI platform. We provide self-hosted LLMs, private GPU infrastructure, and an agentic CLI - all designed for enterprises and government agencies that require complete data sovereignty. Unlike OpenAI or Anthropic, your data never leaves your infrastructure.',
   },
   {
     question: 'What models does 100xprompt offer?',
-    answer: 'We offer two sovereign LLMs: 100X Prompt Pro for deep reasoning tasks (legal, financial, medical workloads) and 100X Prompt Flash for high-speed inference. Both models support 128K context, are FP8 quantized for efficiency, and are DPDP Act 2023 compliant.',
+    answer: 'We offer two sovereign LLMs: 100X Prompt Pro for deep reasoning tasks (legal, financial, medical workloads) and 100X Prompt Flash for high-speed inference. Both models support 128K context, are FP8 quantized for efficiency, and are compliant with global privacy standards.',
   },
   {
     question: 'Can I deploy 100xprompt on my own infrastructure?',

@@ -25,11 +25,11 @@ spec:
       annotations:
         prometheus.io/scrape: "true"
         prometheus.io/port: "3001"
-        prometheus.io/path: "/api/stats"
+        prometheus.io/path: "/health"
     spec:
       containers:
         - name: backend
-          image: gcr.io/PROJECT_ID/100xprompt-backend:latest
+          image: gcr.io/emerald-folio-479006-q9/backend:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 3001
@@ -53,7 +53,7 @@ spec:
               memory: "512Mi"
           livenessProbe:
             httpGet:
-              path: /api/stats
+              path: /health
               port: 3001
             initialDelaySeconds: 15
             periodSeconds: 30
@@ -61,7 +61,7 @@ spec:
             failureThreshold: 3
           readinessProbe:
             httpGet:
-              path: /api/stats
+              path: /health
               port: 3001
             initialDelaySeconds: 10
             periodSeconds: 10
@@ -78,7 +78,7 @@ metadata:
     app: 100xprompt
     component: backend
 spec:
-  type: ClusterIP
+  type: NodePort
   selector:
     app: 100xprompt
     component: backend

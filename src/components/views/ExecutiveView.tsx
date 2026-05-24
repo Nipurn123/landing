@@ -1,13 +1,16 @@
 import { useScroll, useTransform } from 'framer-motion';
 import { useNavigation } from '../../context/NavigationContext';
+import { lazy, Suspense } from 'react';
 import MainLayout from '../layout/MainLayout';
 import Hero from '../sections/Hero';
-import SovereignCore from '../sections/KhufiaEngine';
-import ScrollytellingSection from '../sections/ScrollytellingSection';
-import TestimonialsSection from '../sections/TestimonialsSection';
-import SecuritySection from '../sections/SecuritySection';
-import CTASection from '../sections/CTASection';
 import { Seo, platformFAQSchema } from '../../seo';
+
+// Lazy load below-the-fold components to improve initial load time
+const SovereignCore = lazy(() => import('../sections/KhufiaEngine'));
+const ScrollytellingSection = lazy(() => import('../sections/ScrollytellingSection'));
+const TestimonialsSection = lazy(() => import('../sections/TestimonialsSection'));
+const SecuritySection = lazy(() => import('../sections/SecuritySection'));
+const CTASection = lazy(() => import('../sections/CTASection'));
 
 export default function ExecutiveView() {
   const { goToLogin, goToContact, goToDocs } = useNavigation();
@@ -21,15 +24,13 @@ export default function ExecutiveView() {
       <Seo pageKey="home" schema={platformFAQSchema} />
       <Hero heroY={heroY} heroOpacity={heroOpacity} onLoginClick={goToLogin} onDocsClick={goToDocs} />
 
-      <SovereignCore />
-
-      <ScrollytellingSection onLoginClick={goToLogin} onContactClick={goToContact} />
-
-      <TestimonialsSection />
-
-      <SecuritySection />
-
-      <CTASection />
+      <Suspense fallback={<div className="min-h-screen w-full" />}>
+        <SovereignCore />
+        <ScrollytellingSection onLoginClick={goToLogin} onContactClick={goToContact} />
+        <TestimonialsSection />
+        <SecuritySection />
+        <CTASection />
+      </Suspense>
     </MainLayout>
   );
 }

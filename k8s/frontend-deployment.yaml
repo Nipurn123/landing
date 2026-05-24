@@ -29,7 +29,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: gcr.io/PROJECT_ID/100xprompt-frontend:latest
+          image: gcr.io/emerald-folio-479006-q9/landing:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 80
@@ -73,7 +73,7 @@ metadata:
     app: 100xprompt
     component: frontend
 spec:
-  type: ClusterIP
+  type: NodePort
   selector:
     app: 100xprompt
     component: frontend

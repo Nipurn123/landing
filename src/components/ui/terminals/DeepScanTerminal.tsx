@@ -31,7 +31,7 @@ export default function DeepScanTerminal() {
 
   return (
     <BaseTerminal 
-      title="100x-context — deep-scan"
+      title="100x-context - deep-scan"
       icon={Database}
       gradient="from-blue-500/10 via-transparent to-indigo-500/10"
     >

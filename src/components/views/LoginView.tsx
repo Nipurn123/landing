@@ -1,18 +1,19 @@
 import { m } from 'framer-motion';
 import { Check, Github, Loader2, Linkedin } from 'lucide-react';
 import { useState } from 'react';
-import { useSignIn, SignedIn, SignedOut } from '@clerk/clerk-react';
+import { useSignIn, useSignUp, SignedIn, SignedOut } from '@clerk/clerk-react';
 import { useNavigation } from '../../context/NavigationContext';
 import Logo from '../icons/Logo';
 import { Seo } from '../../seo';
 
 export default function LoginView() {
   const { goHome, goToDocs, goToBlog, goToPricing } = useNavigation();
-  const { signIn, isLoaded } = useSignIn();
+  const { signIn, isLoaded: isSignInLoaded } = useSignIn();
+  const { signUp, isLoaded: isSignUpLoaded } = useSignUp();
   const [isLoading, setIsLoading] = useState<string | null>(null);
 
   const handleOAuthSignIn = async (strategy: 'oauth_google' | 'oauth_github' | 'oauth_linkedin_oidc') => {
-    if (!isLoaded) return;
+    if (!isSignInLoaded || !isSignUpLoaded) return;
     setIsLoading(strategy.split('_')[1]);
     try {
       await signIn.authenticateWithRedirect({
@@ -20,9 +21,24 @@ export default function LoginView() {
         redirectUrl: '/sso-callback',
         redirectUrlComplete: '/',
       });
-    } catch (error) {
-      console.error(`${strategy} sign-in error:`, error);
-      setIsLoading(null);
+    } catch (error: any) {
+      // If user doesn't exist yet, Clerk throws an error — fall back to signUp
+      if (error?.errors?.[0]?.code === 'form_identifier_not_found' || 
+          error?.errors?.[0]?.code === 'external_account_not_found') {
+        try {
+          await signUp.authenticateWithRedirect({
+            strategy,
+            redirectUrl: '/sso-callback',
+            redirectUrlComplete: '/',
+          });
+        } catch (signUpError) {
+          console.error(`${strategy} sign-up error:`, signUpError);
+          setIsLoading(null);
+        }
+      } else {
+        console.error(`${strategy} sign-in error:`, error);
+        setIsLoading(null);
+      }
     }
   };
 
@@ -35,13 +51,13 @@ export default function LoginView() {
         exit={{ opacity: 0 }}
         className="min-h-screen flex flex-col lg:flex-row w-full font-body bg-white selection:bg-[#ff5a1f]/20 selection:text-[#ff5a1f] relative overflow-hidden"
       >
-        {/* Dark Panel - Visible on all screens */}
-        <div className="w-full lg:w-[55%] bg-[#050505] text-white p-6 sm:p-8 md:p-10 lg:p-12 xl:p-16 relative overflow-hidden flex-shrink-0">
+        {/* Dark Panel - Only visible on large screens */}
+        <div className="hidden lg:flex lg:w-[55%] bg-[#050505] text-white p-6 sm:p-8 md:p-10 lg:p-12 xl:p-16 relative overflow-hidden flex-shrink-0 flex-col">
           <div className="absolute top-0 right-0 w-[80%] h-[80%] bg-[radial-gradient(circle_at_top_right,rgba(255,90,31,0.08),transparent_70%)] pointer-events-none" />
           
           <div className="mb-6 sm:mb-8 lg:mb-10 flex items-center gap-3 sm:gap-4 cursor-pointer hover:opacity-80 transition-opacity" onClick={goHome}>
-            <Logo width={80} height={80} className="sm:w-[100px] sm:h-[100px] lg:w-[120px] lg:h-[120px] drop-shadow-[0_0_20px_rgba(74,171,109,0.25)]" />
-            <span className="font-display font-extrabold text-lg sm:text-xl lg:text-2xl tracking-tighter text-white pt-1 sm:pt-2">100xprompt</span>
+            <Logo width={100} height={100} className="sm:w-[140px] sm:h-[140px] lg:w-[180px] lg:h-[180px] drop-shadow-[0_0_20px_rgba(74,171,109,0.25)]" />
+            <span className="font-display font-extrabold text-xl sm:text-2xl lg:text-4xl tracking-tighter text-white pt-1 sm:pt-2">100xprompt</span>
           </div>
 
           <div className="max-w-xl z-10 relative">
@@ -89,7 +105,15 @@ export default function LoginView() {
         </div>
 
         {/* Login Panel */}
-        <div className="w-full lg:w-[45%] bg-white flex flex-col relative min-h-[60vh] lg:min-h-screen overflow-y-auto">
+        <div className="w-full lg:w-[45%] bg-white flex flex-col relative min-h-screen overflow-y-auto">
+          
+          {/* Mobile Logo - Only visible on small screens */}
+          <div className="lg:hidden pt-6 sm:pt-8 px-6 sm:px-8 mb-4">
+            <div className="flex items-center gap-3 cursor-pointer hover:opacity-80 transition-opacity" onClick={goHome}>
+              <Logo width={100} height={100} className="drop-shadow-[0_0_15px_rgba(74,171,109,0.2)]" />
+              <span className="font-display font-extrabold text-2xl tracking-tighter text-gray-900 pt-1">100xprompt</span>
+            </div>
+          </div>
           
           <div className="absolute top-4 sm:top-6 lg:top-8 right-4 sm:right-6 lg:right-8 flex items-center gap-4 sm:gap-6 font-body text-[11px] sm:text-[12px] lg:text-[13px] text-gray-600 font-medium z-20">
             <button onClick={goHome} className="hover:text-gray-900 transition-colors">Home</button>

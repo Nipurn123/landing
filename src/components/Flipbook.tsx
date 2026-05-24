@@ -348,7 +348,7 @@ export default function FlipbookWithScroll() {
           <div className="w-full bg-[var(--color-green-dark)] py-6 px-8 text-center mt-auto shadow-inner relative overflow-hidden">
             <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPgo8cmVjdCB3aWR0aD0iOCIgaGVpZ2h0PSI4IiBmaWxsPSIjMWU3ZDQzIj48L3JlY3Q+CjxwYXRoIGQ9Ik0wIDBMOCA4Wk04IDBMMCA4WiIgc3Ryb2tlPSIjMWE2YjNhIiBzdHJva2Utd2lkdGg9IjEiPjwvcGF0aD4KPC9zdmc+')] opacity-20" />
             <span className="font-body font-bold text-[13px] text-white relative z-10 tracking-wide">
-              India's payments backbone chose sovereignty over convenience.
+              The payments backbone chose sovereignty over convenience. Now the world follows.
             </span>
           </div>
         </Page>

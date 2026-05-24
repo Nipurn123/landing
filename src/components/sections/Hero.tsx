@@ -23,7 +23,7 @@ export default function Hero({ heroY, heroOpacity, onLoginClick, onDocsClick }: 
         </div>
         
         <h1 className="text-[clamp(2.5rem,5.5vw,4.8rem)] leading-[1.05] tracking-[-0.03em] text-[hsl(var(--color-text-primary))] mb-8 font-normal" style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}>
-          India's full-stack <br/>
+          The full-stack <br/>
           <span className="text-[hsl(var(--color-primary))]">sovereign AI platform</span>
         </h1>
         <p className="text-[clamp(1.1rem,1.8vw,1.5rem)] leading-[1.35] text-[hsl(var(--color-text-secondary))] mb-12 max-w-xl font-body">
@@ -59,7 +59,8 @@ export default function Hero({ heroY, heroOpacity, onLoginClick, onDocsClick }: 
         <div className="relative w-full group">
           <div className="absolute inset-0 bg-[#4aab6d] opacity-5 blur-[80px] rounded-full -z-10 animate-pulse" />
           <LazyVideo 
-            src="/assets/Vertex AI Project Video.mp4" 
+            src="/assets/hero-video.mp4" 
+            priority={true}
             autoPlay 
             loop 
             muted 

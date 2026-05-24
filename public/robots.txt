@@ -2,6 +2,5 @@ User-agent: *
 Allow: /
 
 Sitemap: https://100xprompt.com/sitemap.xml
-LLMs-txt: https://100xprompt.com/llms.txt
 
 Crawl-delay: 1

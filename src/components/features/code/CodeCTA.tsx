@@ -67,7 +67,7 @@ export default function CodeCTA() {
             className="text-base md:text-lg text-gray-500 font-body max-w-md leading-relaxed"
             style={{ fontFamily: "'DM Sans', sans-serif" }}
           >
-            Sovereign, secure, and scaled for India.
+            Sovereign, secure, and built for the world.
           </p>
         </div>
 

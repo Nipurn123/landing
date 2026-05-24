@@ -21,7 +21,7 @@ export default function Footer() {
         </div>
 
         <div className="flex flex-col gap-5">
-          <h4 className="text-[11px] font-black text-[hsl(var(--color-text-muted))] uppercase tracking-[0.2em]">Products</h4>
+          <p className="text-[11px] font-black text-[hsl(var(--color-text-muted))] uppercase tracking-[0.2em]">Products</p>
           <div className="flex flex-col gap-3 text-[14px] font-medium text-[hsl(var(--color-text-secondary))]">
             <span onClick={goToCode} className="hover:text-[hsl(var(--color-primary))] transition-colors cursor-pointer">100X Code</span>
             <span onClick={goToInfrastructure} className="hover:text-[hsl(var(--color-primary))] transition-colors cursor-pointer">Infrastructure Layer</span>
@@ -29,7 +29,7 @@ export default function Footer() {
         </div>
 
         <div className="flex flex-col gap-5">
-          <h4 className="text-[11px] font-black text-[hsl(var(--color-text-muted))] uppercase tracking-[0.2em]">Models</h4>
+          <p className="text-[11px] font-black text-[hsl(var(--color-text-muted))] uppercase tracking-[0.2em]">Models</p>
           <div className="flex flex-col gap-3 text-[14px] font-medium text-[hsl(var(--color-text-secondary))]">
             <span onClick={goToModel} className="hover:text-[hsl(var(--color-primary))] transition-colors cursor-pointer">100X Prompt Pro</span>
             <span onClick={goToFlash} className="hover:text-[hsl(var(--color-primary))] transition-colors cursor-pointer">100X Prompt Flash</span>
@@ -37,7 +37,7 @@ export default function Footer() {
         </div>
 
         <div className="flex flex-col gap-5">
-          <h4 className="text-[11px] font-black text-[hsl(var(--color-text-muted))] uppercase tracking-[0.2em]">Resources</h4>
+          <p className="text-[11px] font-black text-[hsl(var(--color-text-muted))] uppercase tracking-[0.2em]">Resources</p>
           <div className="flex flex-col gap-3 text-[14px] font-medium text-[hsl(var(--color-text-secondary))]">
             <span onClick={goToPricing} className="hover:text-[hsl(var(--color-primary))] transition-colors cursor-pointer">Pricing</span>
             <span onClick={goToBlog} className="hover:text-[hsl(var(--color-primary))] transition-colors cursor-pointer">Blog</span>
@@ -48,7 +48,7 @@ export default function Footer() {
         </div>
 
         <div className="flex flex-col gap-5">
-          <h4 className="text-[11px] font-black text-[hsl(var(--color-text-muted))] uppercase tracking-[0.2em]">Company</h4>
+          <p className="text-[11px] font-black text-[hsl(var(--color-text-muted))] uppercase tracking-[0.2em]">Company</p>
           <div className="flex flex-col gap-3 text-[14px] font-medium text-[hsl(var(--color-text-secondary))]">
             <span onClick={goToContact} className="hover:text-[hsl(var(--color-primary))] transition-colors cursor-pointer">Contact Sales</span>
           </div>

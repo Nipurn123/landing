@@ -1,188 +1,21 @@
-import { m, AnimatePresence } from 'framer-motion';
-import { useState, useEffect, useRef } from 'react';
+import { m } from 'framer-motion';
 import MainLayout from '../layout/MainLayout';
 import CTASection from '../sections/CTASection';
+import TestimonialsSection from '../sections/TestimonialsSection';
+import type { Testimonial } from '../sections/TestimonialsSection';
 import OptimizedImage from '../ui/OptimizedImage';
 import { Seo, NAVIGATION_BREADCRUMBS } from '../../seo';
 
-const GREEN = "#4aab6d";
-
-const testimonials = [
+const infraTestimonials: Testimonial[] = [
   {
     id: 1,
-    quote: "We process 10 million queries daily across our data centers. The infrastructure just works. Zero downtime, complete sovereignty.",
-    author: "Dr. Anand Kumar",
-    role: "CTO, State Government",
-    location: "Karnataka",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
-  },
-  {
-    id: 2,
-    quote: "The data sovereignty guarantee gave us confidence. We finally have AI infrastructure that respects our boundaries.",
-    author: "Meera Patel",
-    role: "Banking CISO",
-    location: "Gujarat",
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
-  },
-  {
-    id: 3,
-    quote: "Deploying on air-gapped infrastructure was seamless. Our defense workloads run without a single external dependency.",
-    author: "Vikram Singh",
-    role: "Systems Architect",
-    location: "Delhi",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
-  },
-  {
-    id: 4,
-    quote: "The Kubernetes-native deployment meant we were up and running in hours, not months. True GitOps workflows.",
-    author: "Arjun Reddy",
-    role: "Platform Engineer",
-    location: "Telangana",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face",
-  },
+    quote: "We evaluated multiple AI infrastructure providers before choosing 100xprompt. The decision was straightforward - high-performance foundation models, complete data sovereignty, and zero compromise on security. For any business handling sensitive data, this isn't optional. It's the only way forward.",
+    author: "Sagar Nagda",
+    role: "Co Founder, Nimap Infotech",
+    badge: "Enterprise",
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=48&h=48&fit=crop&crop=face&q=80",
+  }
 ];
-
-function TestimonialCard({ testimonial, isActive }: { testimonial: typeof testimonials[0]; isActive: boolean }) {
-  return (
-    <m.div
-      initial={{ opacity: 0, scale: 0.95 }}
-      animate={{ opacity: isActive ? 1 : 0.4, scale: isActive ? 1 : 0.95 }}
-      transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
-      className="relative w-full max-w-3xl mx-auto px-1 sm:px-0"
-    >
-      <div 
-        className="relative p-6 sm:p-8 md:p-12 rounded-3xl overflow-hidden text-left"
-        style={{
-          background: isActive 
-            ? "linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%)"
-            : "linear-gradient(180deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.5) 100%)",
-          backdropFilter: "blur(20px)",
-          boxShadow: isActive 
-            ? "0 25px 50px -12px rgba(0,0,0,0.08), 0 0 0 1px rgba(255,255,255,0.8) inset"
-            : "0 10px 30px -10px rgba(0,0,0,0.05), 0 0 0 1px rgba(255,255,255,0.5) inset",
-        }}
-      >
-        {isActive && (
-          <>
-            <div 
-              className="absolute top-0 left-0 w-1 sm:w-2 h-full rounded-l-3xl"
-              style={{ background: GREEN }}
-            />
-            <div 
-              className="absolute -top-24 -right-24 w-48 h-48 rounded-full opacity-10"
-              style={{ background: `radial-gradient(circle, ${GREEN} 0%, transparent 70%)` }}
-            />
-          </>
-        )}
-
-        <div className="relative z-10">
-          <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-6 sm:mb-8">
-            <div className="flex items-center gap-3 sm:gap-4">
-              <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-2xl overflow-hidden ring-2 ring-white shadow-lg">
-                <img 
-                  src={testimonial.image} 
-                  alt={testimonial.author}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="min-w-0">
-                <h4 className="font-semibold text-base sm:text-lg truncate" style={{ color: "#111827", fontFamily: "'DM Sans', sans-serif" }}>
-                  {testimonial.author}
-                </h4>
-                <p className="text-xs sm:text-sm truncate" style={{ color: "rgba(17,24,39,0.5)", fontFamily: "'DM Sans', sans-serif" }}>
-                  {testimonial.role}
-                </p>
-              </div>
-            </div>
-            <div className="sm:ml-auto">
-              <span className="inline-block text-[10px] sm:text-xs font-bold px-3 py-1.5 rounded-full whitespace-nowrap" style={{ background: `${GREEN}15`, color: GREEN, fontFamily: "'DM Sans', sans-serif" }}>
-                {testimonial.location}
-              </span>
-            </div>
-          </div>
-
-          <blockquote 
-            className="text-lg sm:text-xl md:text-2xl leading-relaxed"
-            style={{ 
-              color: "rgba(17,24,39,0.8)", 
-              fontFamily: "'Instrument Serif', Georgia, serif",
-              lineHeight: 1.5,
-            }}
-          >
-            "{testimonial.quote}"
-          </blockquote>
-        </div>
-      </div>
-    </m.div>
-  );
-}
-
-function TestimonialsSection() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
-
-  useEffect(() => {
-    intervalRef.current = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % testimonials.length);
-    }, 5000);
-
-    return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current);
-    };
-  }, []);
-
-  const handleClick = (i: number) => {
-    setActiveIndex(i);
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-      intervalRef.current = setInterval(() => {
-        setActiveIndex((prev) => (prev + 1) % testimonials.length);
-      }, 5000);
-    }
-  };
-
-  return (
-    <div className="text-center w-full overflow-hidden">
-      <h2 
-        className="text-3xl md:text-4xl font-semibold text-[hsl(var(--color-text-primary))] mb-12"
-        style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}
-      >
-        What builders are saying
-      </h2>
-
-      <div className="relative min-h-[260px] sm:min-h-[280px]">
-        <AnimatePresence mode="wait">
-          <m.div
-            key={activeIndex}
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
-            transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
-          >
-            <TestimonialCard 
-              testimonial={testimonials[activeIndex]} 
-              isActive={true}
-            />
-          </m.div>
-        </AnimatePresence>
-      </div>
-
-      <div className="flex items-center justify-center gap-2 mt-8">
-        {testimonials.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => handleClick(i)}
-            className="relative h-2 rounded-full transition-all duration-300 cursor-pointer"
-            style={{
-              width: i === activeIndex ? 24 : 8,
-              background: i === activeIndex ? GREEN : "rgba(17,24,39,0.1)",
-            }}
-          />
-        ))}
-      </div>
-    </div>
-  );
-}
 
 const deploymentOptions = [
   {
@@ -202,9 +35,9 @@ const deploymentOptions = [
   {
     image: "/assets/infrastrcture/3.jpg",
     title: "Sovereign Cloud",
-    description: "Deploy on Indian sovereign cloud providers. Data residency guaranteed. DPDP Act compliant.",
-    accent: "Bharat Native",
-    features: ["Data residency enforcement", "Indian cloud providers", "Regulatory compliance"]
+    description: "Deploy on sovereign cloud providers in your region. Data residency guaranteed. Fully compliant with local data protection laws.",
+    accent: "Region Native",
+    features: ["Data residency enforcement", "Sovereign cloud providers", "Regulatory compliance"]
   }
 ];
 
@@ -281,9 +114,9 @@ export default function InfrastructureView() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="mb-20"
+          className="mb-12 sm:mb-16 md:mb-20"
         >
-          <div className="text-center mb-24">
+          <div className="text-center mb-12 sm:mb-16 md:mb-24">
             <h2 
               className="text-[clamp(2rem,4vw,3.5rem)] leading-[1.1] tracking-[-0.03em] text-[hsl(var(--color-text-primary))] mb-6 font-normal"
               style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}
@@ -356,7 +189,12 @@ export default function InfrastructureView() {
           transition={{ duration: 0.8 }}
           className="mb-20"
         >
-          <TestimonialsSection />
+          <TestimonialsSection 
+            testimonials={infraTestimonials}
+            title="What builders are saying"
+            subtitle="Engineers deploying sovereign infrastructure at scale"
+            variant="compact"
+          />
         </m.div>
 
         <CTASection />

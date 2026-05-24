@@ -10,36 +10,26 @@ interface Layer {
   subtitle: string;
   description: string;
   cardGradient: [string, string];
-  icon: React.ReactNode;
 }
 
 const LAYERS: Layer[] = [
   {
     title: "100X Code",
-    subtitle: "Layer 1 — Software",
+    subtitle: "Layer 1 - Software",
     description: "Sovereign AI software & CLI. Accelerate training, fine-tuning and inference within your secure perimeter.",
     cardGradient: ["#FFFFFF", "#F0F2F5"],
-    icon: (
-      <svg viewBox="0 0 32 32" fill="none"><rect x="3" y="6" width="26" height="20" rx="3" stroke="currentColor" strokeWidth="1.5" /><path d="M8 14l4 3-4 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /><path d="M14 20h10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /><circle cx="26" cy="10" r="1" fill="currentColor" opacity=".5" /><circle cx="23" cy="10" r="1" fill="currentColor" opacity=".5" /></svg>
-    ),
   },
   {
     title: "The Brain",
-    subtitle: "Layer 2 — LLM",
+    subtitle: "Layer 2 - LLM",
     description: "LLM orchestration. Self-hosted. Your models. Fine-tuned on your proprietary data, optimized for your domain.",
     cardGradient: ["#B8C8E0", "#9FB2D1"],
-    icon: (
-      <svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="12" stroke="currentColor" strokeWidth="1.5" /><circle cx="16" cy="16" r="7" stroke="currentColor" strokeWidth="1" opacity=".4" /><circle cx="16" cy="16" r="2.5" fill="currentColor" /><path d="M16 4v4M16 24v4M4 16h4M24 16h4" stroke="currentColor" strokeWidth="1" opacity=".3" /></svg>
-    ),
   },
   {
     title: "The Servers",
-    subtitle: "Layer 3 — Infrastructure",
+    subtitle: "Layer 3 - Infrastructure",
     description: "GPU deployment. Private infra. Your compute. End-to-end compute orchestration tailored for enterprise scale.",
     cardGradient: ["#D4A574", "#C08A58"],
-    icon: (
-      <svg viewBox="0 0 32 32" fill="none"><rect x="4" y="19" width="24" height="9" rx="2" stroke="currentColor" strokeWidth="1.5" /><rect x="7" y="11" width="18" height="9" rx="2" stroke="currentColor" strokeWidth="1.5" /><rect x="10" y="3" width="12" height="9" rx="2" stroke="currentColor" strokeWidth="1.5" /><circle cx="12" cy="23.5" r="1.5" fill="currentColor" opacity=".5" /><circle cx="16" cy="23.5" r="1.5" fill="currentColor" /><circle cx="20" cy="23.5" r="1.5" fill="currentColor" opacity=".5" /></svg>
-    ),
   },
 ];
 
@@ -96,23 +86,23 @@ function GlassStack({ progress, activeIndex }: { progress: number; activeIndex: 
   const windowHeight = typeof window !== 'undefined' ? window.innerHeight : 800;
   const isMobile = windowWidth < 768;
   
-  const CARD = isMobile ? Math.min(80, windowWidth * 0.22) : Math.min(220, windowWidth * 0.15, windowHeight * 0.25);
-  const GAP = isMobile ? 8 : Math.min(28, windowHeight * 0.03);
-  const CONTAINER_W = isMobile 
-    ? Math.min(280, windowWidth * 0.75) 
-    : Math.min(520, windowWidth * 0.35, windowHeight * 0.52);
-  const CONTAINER_H = CONTAINER_W;
-  const BORDER_R = isMobile ? 12 : Math.min(28, CONTAINER_W * 0.08);
-  const ICON_SIZE = isMobile ? 16 : Math.min(40, CARD * 0.2);
-  const FONT_NUM = isMobile ? 18 : Math.min(60, CONTAINER_W * 0.12);
+  const CONTAINER_SIZE = isMobile 
+    ? Math.min(380, windowWidth * 0.9, windowHeight * 0.45)
+    : Math.min(750, windowWidth * 0.85, windowHeight * 0.65);
+  const CARD = isMobile 
+    ? Math.min(220, CONTAINER_SIZE * 0.58) 
+    : Math.min(340, CONTAINER_SIZE * 0.48);
+  const GAP = isMobile ? 18 : Math.min(48, windowHeight * 0.055);
+  const BORDER_R = isMobile ? 22 : Math.min(28, CARD * 0.08);
+  const FONT_NUM = isMobile ? 26 : Math.min(88, CONTAINER_SIZE * 0.14);
 
   return (
     <div className="relative flex items-center justify-center">
       <div
         className="relative overflow-hidden"
         style={{
-          width: CONTAINER_W,
-          height: CONTAINER_H,
+          width: CONTAINER_SIZE,
+          height: CONTAINER_SIZE,
           borderRadius: BORDER_R,
           background: `linear-gradient(160deg, #A8C4B0 0%, #C8DDD0 100%)`,
           border: "1px solid rgba(180, 200, 190, 0.5)",
@@ -174,18 +164,7 @@ function GlassStack({ progress, activeIndex }: { progress: number; activeIndex: 
                       transformStyle: "preserve-3d",
                       transition: "all 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
                     }}
-                  >
-                    <div style={{
-                      width: ICON_SIZE, height: ICON_SIZE,
-                      color: isActive ? GREEN : "rgba(0,0,0,0.2)",
-                      transform: "rotateZ(45deg) rotateX(-55deg)",
-                      transition: "all 0.4s",
-                      filter: isActive ? `drop-shadow(0 4px 8px rgba(${GREEN_RGB},0.2))` : "none",
-                      opacity: isActive ? 1 : 0.4,
-                    }}>
-                      {layer.icon}
-                    </div>
-                  </div>
+                  />
                 </div>
               );
             })}
@@ -425,13 +404,9 @@ export default function ScrollytellingSection({ onLoginClick, onContactClick }: 
         <div className="sticky top-0 h-screen w-full overflow-hidden" style={{ fontFamily: "'DM Sans', sans-serif" }}>
           <div className="absolute top-0 inset-x-0 z-20 flex justify-center pt-3 sm:pt-4 md:pt-5">
             <div className="text-center px-4">
-              <p className="text-[10px] sm:text-[11px] md:text-[12px] font-bold tracking-[0.2em] sm:tracking-[0.25em] text-[hsl(var(--color-primary-hover))] uppercase mb-2 sm:mb-4 flex items-center justify-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-[hsl(var(--color-primary-hover))]" />
-                Architecture
-              </p>
-              <h3 className="font-display text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-[hsl(var(--color-text-primary))] font-medium leading-tight tracking-tighter">
-                The <span className="text-[hsl(var(--color-primary))]">sovereign stack</span>
-              </h3>
+      <h3 className="font-display text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-[#111827] font-semibold leading-tight tracking-tighter">
+        The <span className="text-[#ea580c] font-bold">sovereign stack</span>
+      </h3>
             </div>
           </div>
 

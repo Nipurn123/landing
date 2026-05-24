@@ -7,7 +7,7 @@ const processSteps = [
   {
     title: "Purged",
     subtitle: "Clean Foundation",
-    description: "Removed all harmful, biased, and non-Indian compliance data from base model. DPDP-ready from day one.",
+    description: "Removed all harmful, biased, and extraterritorial compliance data from base model. Sovereign-ready from day one.",
     icon: (
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
         <path d="M3 6h18M8 6V4a2 2 0 012-2h4a2 2 0 012 2v2m3 0v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6h14z" strokeLinecap="round" strokeLinejoin="round"/>
@@ -42,7 +42,7 @@ const specs = [
   { label: "Context Window", value: "128K tokens" },
   { label: "Active Parameters", value: "27B" },
   { label: "Deployment", value: "SGLang / vLLM" },
-  { label: "Compliance", value: "DPDP Act 2023" },
+  { label: "Compliance", value: "Global Privacy Standards" },
   { label: "Latency", value: "<500ms first token @ A100" },
 ];
 
@@ -75,7 +75,7 @@ export default function ProductFlashView() {
           </h1>
           
           <p className="text-[clamp(1.1rem,1.8vw,1.5rem)] leading-[1.35] text-[hsl(var(--color-text-secondary))] mb-12 max-w-xl font-body">
-            Built on Qwen3.5 27B — optimized for <span className="text-[hsl(var(--color-primary))] font-medium">speed and efficiency</span>. Perfect for high-throughput workloads.
+            Built on Qwen3.5 27B - optimized for <span className="text-[hsl(var(--color-primary))] font-medium">speed and efficiency</span>. Perfect for high-throughput workloads.
           </p>
           
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
@@ -87,7 +87,7 @@ export default function ProductFlashView() {
             <button 
               disabled
               className="flex items-center justify-center gap-2 bg-transparent text-[hsl(var(--color-text-muted))] px-8 py-4 rounded transition-all font-body text-[13px] font-bold uppercase tracking-widest w-full sm:w-auto cursor-not-allowed opacity-60">
-              Benchmarks — Revealing Soon
+              Benchmarks - Revealing Soon
             </button>
           </div>
         </m.div>

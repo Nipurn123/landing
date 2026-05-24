@@ -4,9 +4,9 @@ const DARK = "#111827";
 
 export default function SecuritySection() {
   const badges = [
-    { src: "/assets/prod-samvaad/products/sam-sec-03.svg", alt: "Security badge 1" },
-    { src: "/assets/prod-samvaad/products/sam-sec-02.svg", alt: "Security badge 2" },
-    { src: "/assets/prod-samvaad/products/sam-sec-01.svg", alt: "Security badge 3" },
+    { src: "/assets/prod-samvaad/products/sam-sec-03.svg", alt: "Security badge 1", width: 80, height: 80 },
+    { src: "/assets/prod-samvaad/products/sam-sec-02.svg", alt: "Security badge 2", width: 80, height: 80 },
+    { src: "/assets/prod-samvaad/products/sam-sec-01.svg", alt: "Security badge 3", width: 80, height: 80 },
   ];
 
   return (
@@ -51,7 +51,11 @@ export default function SecuritySection() {
               <img 
                 src={badge.src} 
                 alt={badge.alt} 
-                className="max-w-[60%] md:max-w-[65%] max-h-[60%] md:max-h-[65%] object-contain grayscale hover:grayscale-0 transition-all duration-500 opacity-80 hover:opacity-100"
+                width={badge.width}
+                height={badge.height}
+                loading="lazy"
+                decoding="async"
+                className="w-20 h-20 object-contain grayscale hover:grayscale-0 transition-all duration-500 opacity-80 hover:opacity-100"
               />
             </div>
           </m.div>

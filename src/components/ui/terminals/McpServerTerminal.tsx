@@ -37,7 +37,7 @@ export default function McpServerTerminal() {
 
   return (
     <BaseTerminal 
-      title="100x-mcp — natural-language"
+      title="100x-mcp - natural-language"
       icon={Box}
       gradient="from-violet-500/10 via-transparent to-purple-500/10"
     >

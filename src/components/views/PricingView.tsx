@@ -33,7 +33,7 @@ const pricingTiers = [
       "Priority support",
       "99.9% uptime SLA",
       "On-premise deployment option",
-      "DPDP compliance toolkit"
+      "Global compliance toolkit"
     ],
     cta: "Contact Sales",
     popular: true,
@@ -69,7 +69,7 @@ const faqs = [
   },
   {
     question: "What does sovereign AI mean?",
-    answer: "Your data never leaves your infrastructure. We provide zero-leakage training, DPDP Act 2023 compliance tooling, and complete control over model behavior and outputs."
+    answer: "Your data never leaves your infrastructure. We provide zero-leakage training, global compliance tooling, and complete control over model behavior and outputs."
   },
   {
     question: "How does pricing work?",
@@ -108,7 +108,7 @@ const pricingFaqs = [
   },
   {
     question: "What does sovereign AI mean?",
-    answer: "Your data never leaves your infrastructure. We provide zero-leakage training, DPDP Act 2023 compliance tooling, and complete control over model behavior and outputs."
+    answer: "Your data never leaves your infrastructure. We provide zero-leakage training, global compliance tooling, and complete control over model behavior and outputs."
   },
 ];
 
@@ -165,7 +165,7 @@ export default function PricingView() {
 
         <section className="px-6 pb-24">
           <div className="max-w-7xl mx-auto">
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               {pricingTiers.map((tier, index) => (
                 <m.div
                   key={tier.name}
@@ -173,7 +173,7 @@ export default function PricingView() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className={`relative rounded-3xl p-8 transition-all duration-300 hover:-translate-y-2 ${
+                  className={`relative rounded-3xl p-6 sm:p-8 transition-all duration-300 hover:-translate-y-2 ${
                     tier.popular 
                       ? 'ring-2 ring-[#4aab6d] shadow-xl' 
                       : 'border border-gray-200 shadow-lg hover:shadow-xl'

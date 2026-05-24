@@ -5,9 +5,10 @@ metadata:
   namespace: hundredxprompt
   annotations:
     kubernetes.io/ingress.class: "gce"
-    kubernetes.io/ingress.global-static-ip-name: "100xprompt-ip"
+    kubernetes.io/ingress.global-static-ip-name: "hundredxprompt-ip"
     networking.gke.io/managed-certificates: "100xprompt-cert"
-    kubernetes.io/ingress.allow-http: "false"
+    kubernetes.io/ingress.allow-http: "true"
+    networking.gke.io/force-https-redirect: "true"
 spec:
   rules:
     - host: 100xprompt.com
@@ -44,7 +45,7 @@ spec:
                 name: frontend
                 port:
                   number: 80
-    - host: api.100xprompt.com
+    - host: backend.100xprompt.com
       http:
         paths:
           - path: /*

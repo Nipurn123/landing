@@ -2,13 +2,16 @@ import { useState, useEffect, useRef } from 'react';
 
 interface LazyVideoProps extends React.VideoHTMLAttributes<HTMLVideoElement> {
   src: string;
+  priority?: boolean;
 }
 
-export default function LazyVideo({ src, ...props }: LazyVideoProps) {
-  const [isVisible, setIsVisible] = useState(false);
+export default function LazyVideo({ src, priority = false, ...props }: LazyVideoProps) {
+  const [isVisible, setIsVisible] = useState(priority);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
+    if (priority) return; // Skip observer if priority is true
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -24,7 +27,7 @@ export default function LazyVideo({ src, ...props }: LazyVideoProps) {
     }
 
     return () => observer.disconnect();
-  }, []);
+  }, [priority]);
 
   return (
     <video

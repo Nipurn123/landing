@@ -1,6 +1,6 @@
 # 100XPrompt
 
-> India's full-stack sovereign AI platform. Self-hosted LLMs, private GPU infrastructure, and agentic CLI.
+> The world's leading full-stack sovereign AI platform. Self-hosted LLMs, private GPU infrastructure, and agentic CLI.
 
 ## What is 100XPrompt?
 
@@ -29,7 +29,7 @@
 - Ideal for legal, financial, and medical workloads
 - Priority support
 - 99.9% uptime SLA
-- DPDP compliance toolkit
+- Sovereign compliance toolkit
 
 ### Enterprise - Sovereign infrastructure
 - Air-gapped deployment options
@@ -44,7 +44,7 @@
 ## Key Features
 
 - **Sovereign AI**: Your data never leaves your infrastructure. Complete control over model weights and training data.
-- **DPDP Compliant**: Built for India's Digital Personal Data Protection Act requirements.
+- **Globally Compliant**: Built to meet international data protection and privacy requirements.
 - **Self-Hosted LLMs**: Deploy and fine-tune models on your own infrastructure.
 - **Agentic CLI**: Terminal-native AI developer that understands your codebase.
 - **Private GPU Infrastructure**: Enterprise-grade compute without sharing resources.
@@ -53,7 +53,7 @@
 ## Use Cases
 
 - **Financial Services**: Regulatory-compliant AI for fraud detection, risk analysis, and customer service
-- **Healthcare**: HIPAA-compliant diagnostic assistance and patient data analysis
+- **Healthcare**: Data-sovereign diagnostic assistance and patient data analysis
 - **Legal**: Contract analysis, legal research, and document review with attorney-client privilege protection
 - **Government**: Sovereign AI for national security and citizen services
 - **Enterprise**: Internal knowledge management, code generation, and process automation
@@ -69,8 +69,8 @@
 ## Company
 
 - **Founded**: 2024
-- **Location**: India
-- **Focus**: Sovereign AI for Indian enterprises
+- **Location**: Global Operations
+- **Focus**: Sovereign AI for global enterprises
 - **Website**: https://100xprompt.com
 
 ## Contact

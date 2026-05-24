@@ -14,6 +14,48 @@ const supabaseServiceKey = process.env.SUPABASE_SERVICE_KEY || 'eyJhbGciOiJIUzI1
 
 const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
+function getClientIP(req) {
+  return req.headers['x-forwarded-for']?.split(',')[0]?.trim() || 
+         req.headers['x-real-ip'] || 
+         req.connection?.remoteAddress || 
+         req.socket?.remoteAddress || 
+         '127.0.0.1';
+}
+
+const rateLimitStore = new Map();
+const RATE_LIMIT_WINDOW = 60000;
+const RATE_LIMIT_MAX = 100;
+
+function rateLimit(req, res, next) {
+  const ip = getClientIP(req);
+  const now = Date.now();
+  const windowStart = now - RATE_LIMIT_WINDOW;
+  
+  const requests = rateLimitStore.get(ip) || [];
+  const recentRequests = requests.filter(time => time > windowStart);
+  
+  if (recentRequests.length >= RATE_LIMIT_MAX) {
+    return res.status(429).json({ error: 'Too many requests' });
+  }
+  
+  recentRequests.push(now);
+  rateLimitStore.set(ip, recentRequests);
+  
+  next();
+}
+
+setInterval(() => {
+  const now = Date.now();
+  for (const [ip, requests] of rateLimitStore.entries()) {
+    const validRequests = requests.filter(time => time > now - RATE_LIMIT_WINDOW);
+    if (validRequests.length === 0) {
+      rateLimitStore.delete(ip);
+    } else {
+      rateLimitStore.set(ip, validRequests);
+    }
+  }
+}, 60000);
+
 const allowedOrigins = [
   'http://localhost:5173',
   'http://localhost:4173',
@@ -38,6 +80,10 @@ app.use(cors({
   optionsSuccessStatus: 204
 }));
 app.use(express.json());
+
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'healthy' });
+});
 
 const transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -390,16 +436,79 @@ function parseUserAgent(userAgent) {
   return { browser, browserVersion, os, osVersion, deviceType };
 }
 
-function getClientIP(req) {
-  return req.headers['x-forwarded-for']?.split(',')[0]?.trim() || 
-         req.headers['x-real-ip'] || 
-         req.connection?.remoteAddress || 
-         req.socket?.remoteAddress || 
-         '127.0.0.1';
+async function sendVisitorNotificationEmail(visitor, geoData, uaData, isNew = true) {
+  const subjectPrefix = isNew ? '🆕 New Visitor' : '🔄 Returning Visitor';
+  const visitText = isNew ? 'First Visit' : `Visit #${visitor.visit_count || 2}`;
+  const domainLabel = visitor.app_domain === 'app' ? 'App (app.100xprompt.com)' : 
+                      visitor.app_domain === 'landing' ? 'Landing (100xprompt.com)' : 
+                      visitor.app_domain || 'Unknown';
+  
+  const mailOptions = {
+    from: process.env.GMAIL_USER,
+    to: process.env.GMAIL_USER,
+    subject: `${subjectPrefix} from ${geoData.city || 'Unknown'}, ${geoData.country || 'Unknown'}`,
+    html: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background: #1a1a2e; border-radius: 8px;">
+        <h2 style="color: ${isNew ? '#4aab6d' : '#f39c12'}; border-bottom: 2px solid ${isNew ? '#4aab6d' : '#f39c12'}; padding-bottom: 10px;">${isNew ? '🚀' : '🔄'} Website ${isNew ? 'New' : 'Returning'} Visitor</h2>
+        
+        <div style="background: #16213e; padding: 20px; border-radius: 6px; margin-top: 20px;">
+          <table style="width: 100%; border-collapse: collapse; color: #eee;">
+            <tr>
+              <td style="padding: 10px 0; border-bottom: 1px solid #2a3f5f; color: #aaa; width: 40%;"><strong>📊 Status:</strong></td>
+              <td style="padding: 10px 0; border-bottom: 1px solid #2a3f5f;">${visitText}</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px 0; border-bottom: 1px solid #2a3f5f; color: #aaa;"><strong>🌐 Domain:</strong></td>
+              <td style="padding: 10px 0; border-bottom: 1px solid #2a3f5f;">${domainLabel}</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px 0; border-bottom: 1px solid #2a3f5f; color: #aaa;"><strong>📍 Location:</strong></td>
+              <td style="padding: 10px 0; border-bottom: 1px solid #2a3f5f;">${geoData.city || 'Unknown'}, ${geoData.region || 'Unknown'}, ${geoData.country || 'Unknown'}</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px 0; border-bottom: 1px solid #2a3f5f; color: #aaa;"><strong>🌐 IP Address:</strong></td>
+              <td style="padding: 10px 0; border-bottom: 1px solid #2a3f5f;">${visitor.ip_address}</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px 0; border-bottom: 1px solid #2a3f5f; color: #aaa;"><strong>💻 Device:</strong></td>
+              <td style="padding: 10px 0; border-bottom: 1px solid #2a3f5f;">${uaData.deviceType} - ${uaData.browser} ${uaData.browserVersion} on ${uaData.os} ${uaData.osVersion}</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px 0; border-bottom: 1px solid #2a3f5f; color: #aaa;"><strong>📱 Screen:</strong></td>
+              <td style="padding: 10px 0; border-bottom: 1px solid #2a3f5f;">${visitor.screen_resolution || 'Unknown'}</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px 0; border-bottom: 1px solid #2a3f5f; color: #aaa;"><strong>🔗 Referrer:</strong></td>
+              <td style="padding: 10px 0; border-bottom: 1px solid #2a3f5f;">${visitor.referrer || 'Direct'}</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px 0; border-bottom: 1px solid #2a3f5f; color: #aaa;"><strong>🏢 ISP:</strong></td>
+              <td style="padding: 10px 0; border-bottom: 1px solid #2a3f5f;">${geoData.isp || 'Unknown'} ${geoData.org ? '(' + geoData.org + ')' : ''}</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px 0; color: #aaa;"><strong>⏰ Time:</strong></td>
+              <td style="padding: 10px 0;">${new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' })} IST</td>
+            </tr>
+          </table>
+        </div>
+        
+        <p style="color: #666; font-size: 12px; margin-top: 20px; text-align: center;">
+          Visitor ID: ${visitor.visitor_id}
+        </p>
+      </div>
+    `
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    console.log('Visitor notification email sent');
+  } catch (error) {
+    console.error('Failed to send visitor notification:', error);
+  }
 }
 
-app.post('/api/track/visitor', async (req, res) => {
-  const { visitorId, referrer, screenResolution, language } = req.body;
+app.post('/api/track/visitor', rateLimit, async (req, res) => {
+  const { visitorId, sessionId, referrer, screenResolution, language, appDomain, isNewSession } = req.body;
   const ip = getClientIP(req);
   const userAgent = req.headers['user-agent'];
 
@@ -415,17 +524,34 @@ app.post('/api/track/visitor', async (req, res) => {
       .single();
 
     if (existingVisitor) {
+      const updateData = {
+        last_visit: new Date().toISOString(),
+      };
+      
+      if (isNewSession) {
+        updateData.visit_count = existingVisitor.visit_count + 1;
+      }
+
       const { error: updateError } = await supabase
         .from('visitors')
-        .update({
-          last_visit: new Date().toISOString(),
-          visit_count: existingVisitor.visit_count + 1
-        })
+        .update(updateData)
         .eq('visitor_id', visitorId);
 
       if (updateError) {
         console.error('Update error:', updateError);
         return res.status(500).json({ error: 'Failed to update visitor' });
+      }
+
+      if (isNewSession) {
+        const geoData = await getGeoLocation(ip);
+        const uaData = parseUserAgent(userAgent);
+        
+        sendVisitorNotificationEmail(
+          { ...existingVisitor, visit_count: existingVisitor.visit_count + 1, app_domain: appDomain },
+          geoData,
+          uaData,
+          false
+        ).catch(err => console.error('Email notification error:', err));
       }
 
       return res.status(200).json({ success: true, isNew: false, visitor: existingVisitor });
@@ -467,10 +593,48 @@ app.post('/api/track/visitor', async (req, res) => {
       return res.status(500).json({ error: 'Failed to create visitor' });
     }
 
+    sendVisitorNotificationEmail({ ...data, app_domain: appDomain }, geoData, uaData, true).catch(err => 
+      console.error('Email notification error:', err)
+    );
+
     res.status(200).json({ success: true, isNew: true, visitor: data });
   } catch (error) {
     console.error('Error:', error);
     res.status(500).json({ error: 'Failed to track visitor' });
+  }
+});
+
+app.post('/api/track/session', rateLimit, async (req, res) => {
+  const { visitorId, sessionId, durationSeconds, pageViews } = req.body;
+
+  if (!visitorId || !sessionId) {
+    return res.status(400).json({ error: 'visitorId and sessionId are required' });
+  }
+
+  try {
+    const { data, error } = await supabase
+      .from('sessions')
+      .upsert([{
+        visitor_id: visitorId,
+        session_id: sessionId,
+        duration_seconds: durationSeconds || 0,
+        page_views: pageViews || 1,
+        ended_at: new Date().toISOString()
+      }], {
+        onConflict: 'session_id'
+      })
+      .select()
+      .single();
+
+    if (error) {
+      console.error('Session track error:', error);
+      return res.status(500).json({ error: 'Failed to track session' });
+    }
+
+    res.status(200).json({ success: true, data });
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ error: 'Failed to track session' });
   }
 });
 
@@ -512,8 +676,8 @@ app.post('/api/track/pageview', async (req, res) => {
   }
 });
 
-app.post('/api/track/click', async (req, res) => {
-  const { visitorId, elementType, elementId, elementText, elementClass, pagePath, href, x, y } = req.body;
+app.post('/api/track/click', rateLimit, async (req, res) => {
+  const { visitorId, sessionId, elementType, elementId, elementText, elementClass, pagePath, href, x, y, utm } = req.body;
 
   if (!visitorId || !elementType) {
     return res.status(400).json({ error: 'visitorId and elementType are required' });
@@ -524,6 +688,7 @@ app.post('/api/track/click', async (req, res) => {
       .from('click_events')
       .insert([{
         visitor_id: visitorId,
+        session_id: sessionId || null,
         element_type: elementType,
         element_id: elementId || null,
         element_text: elementText || null,
@@ -531,7 +696,10 @@ app.post('/api/track/click', async (req, res) => {
         page_path: pagePath || null,
         href: href || null,
         x_position: x || null,
-        y_position: y || null
+        y_position: y || null,
+        utm_source: utm?.source || null,
+        utm_medium: utm?.medium || null,
+        utm_campaign: utm?.campaign || null
       }])
       .select()
       .single();

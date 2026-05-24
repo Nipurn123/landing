@@ -8,14 +8,14 @@ const JOURNEY = [
   {
     year: "The Problem",
     title: "A Question That Changed Everything",
-    description: "Why does India's AI infrastructure run on foreign clouds? Why do our enterprises send their most sensitive data abroad just to get intelligent answers? We knew there had to be a better way.",
+    description: "Why does the world's AI infrastructure run on third-party servers? Why do enterprises send their most sensitive data abroad just to get intelligent answers? We knew there had to be a better way.",
     highlight: "Sovereignty isn't a feature. It's the only way we build.",
   },
   {
     year: "The Vision",
-    title: "Bharat's Sovereign AI Backbone",
-    description: "We set out to build something unprecedented — an AI stack where sovereignty isn't a feature you pay extra for, but the very ground you stand on. Your data. Your models. Your infrastructure.",
-    highlight: "India's data belongs to India. We're just making that technically possible.",
+    title: "The Global Sovereign AI Backbone",
+    description: "We set out to build something unprecedented - an AI stack where sovereignty isn't a feature you pay extra for, but the very ground you stand on. Your data. Your models. Your infrastructure.",
+    highlight: "Your data belongs to you. We're just making that technically possible.",
   },
 ];
 

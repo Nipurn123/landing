@@ -14,7 +14,7 @@ export interface OrganizationSchema {
     availableLanguage: string[];
   };
   knowsAbout: string[];
-  areaServed: {
+  areaServed?: {
     '@type': string;
     name: string;
   };
@@ -26,7 +26,7 @@ export const organizationSchema: OrganizationSchema = {
   name: SITE_CONFIG.name,
   url: SITE_CONFIG.url,
   logo: `${SITE_CONFIG.url}/logo.png`,
-  description: 'India\'s full-stack sovereign AI platform. Self-hosted LLMs, private GPU infrastructure, and agentic CLI.',
+  description: 'The world\'s leading full-stack sovereign AI platform. Self-hosted LLMs, private GPU infrastructure, and agentic CLI.',
   sameAs: [
     'https://x.com/100XPrompt',
     'https://www.linkedin.com/company/100xprompt',
@@ -35,7 +35,7 @@ export const organizationSchema: OrganizationSchema = {
   contactPoint: {
     '@type': 'ContactPoint',
     contactType: 'sales',
-    availableLanguage: ['English', 'Hindi'],
+    availableLanguage: ['English'],
   },
   knowsAbout: [
     'Sovereign AI',
@@ -43,14 +43,10 @@ export const organizationSchema: OrganizationSchema = {
     'AI Infrastructure',
     'GPU Computing',
     'Data Privacy',
-    'DPDP Compliance',
+    'Global Compliance',
     'Enterprise AI',
     'Agentic AI',
   ],
-  areaServed: {
-    '@type': 'Country',
-    name: 'India',
-  },
 };
 
 export const organizationJsonLd = JSON.stringify(organizationSchema);

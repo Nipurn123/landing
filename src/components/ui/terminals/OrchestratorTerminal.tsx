@@ -34,7 +34,7 @@ export default function OrchestratorTerminal() {
 
   return (
     <BaseTerminal 
-      title="100x-parallel — orchestrator"
+      title="100x-parallel - orchestrator"
       icon={Users}
       gradient="from-emerald-500/10 via-transparent to-blue-500/10"
     >

@@ -34,7 +34,7 @@ export default function WebSearchTerminal() {
 
   return (
     <BaseTerminal 
-      title="100x-search — web"
+      title="100x-search - web"
       icon={Globe}
       gradient="from-cyan-500/10 via-transparent to-blue-500/10"
     >

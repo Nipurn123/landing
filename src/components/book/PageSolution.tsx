@@ -60,7 +60,7 @@ export function PageSolutionRight() {
       
       <div className="w-full bg-[#1a6b3a] py-6 px-4 text-center mt-auto">
         <span className="font-body font-bold text-[12px] text-white">
-          India's payments backbone chose sovereignty over convenience.
+          The payments backbone chose sovereignty over convenience.
         </span>
       </div>
 
